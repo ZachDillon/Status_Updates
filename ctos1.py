@@ -3,6 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import polling
+import time
 
 def wait_for_inshape_loading(driver):
 
@@ -80,6 +81,8 @@ while restart:
 
 		# clicks update
 		driver.find_element_by_class_name('action-button').click()
+
+		time.sleep(5)
 
 		# close firefox
 		driver.close()

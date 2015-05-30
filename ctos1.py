@@ -121,3 +121,4 @@ while restart:
 	else:
 		restart = False
 print "Moves complete, good bye."
+time.sleep(3)

@@ -1,9 +1,11 @@
+#!/usr/bin/env python
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import polling
 import time
+import getpass
 
 def wait_for_inshape_loading(driver):
 
@@ -31,17 +33,17 @@ restart = True
 while restart:
 	# Gathers the users login name, password and Tray name
 	user = raw_input("What is your user name?")
-	password = raw_input("What is your password?")
+	password = getpass.getpass("What is your password?")
 	tray_name1 = raw_input("Please scan or enter in tray name:")
 	tray_name2 = raw_input("Please enter tray name again to confirm:")
 
 	if tray_name1 == tray_name2:
 		tray_final = tray_name1 or tray_name2
-		print "Success, Moving Tray to Sort 1."
+		print "Moving Tray to Sort 1."
 
 		# Opens Firefox
 		driver = webdriver.Firefox()
-		driver.get("http://inshape.qa1.nyc.shapeways.net")
+		driver.get("http://inshape.shapeways.com")
 
 		# Finds the user input box and password input box 
 		# and incerts the info above and logs in
@@ -60,6 +62,27 @@ while restart:
 		elem_tray = driver.find_element_by_id("searchBox")
 		elem_tray.send_keys(tray_final)
 		driver.find_element_by_xpath("//select[@name='searchType']/option[9]").click()
+		
+		cooling_tab = polling.poll(
+			lambda: driver.find_element_by_id("substatus-344"),
+			step=1,
+			timeout=30,
+			ignore_exceptions=(Exception,)
+		)
+		cooling_tab.click()
+
+		wait_for_inshape_loading(driver)
+
+		# navagates to the unpacking and cleaning tab
+		driver.find_element_by_id("substatus-344").click()
+
+		wait_for_inshape_loading(driver)
+
+		# select the tray by tray name
+		driver.find_element_by_id("assign-bulk").click()
+
+		# clicks update
+		driver.find_element_by_class_name('action-button').click()
 
 		unpack_tab = polling.poll(
 			lambda: driver.find_element_by_id("substatus-187"),
@@ -83,6 +106,8 @@ while restart:
 		driver.find_element_by_class_name('action-button').click()
 
 		time.sleep(5)
+
+		print "Success, move complete."
 
 		# close firefox
 		driver.close()

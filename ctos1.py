@@ -73,7 +73,7 @@ while restart:
 
 		wait_for_inshape_loading(driver)
 
-		# navagates to the unpacking and cleaning tab
+		# navagates to the cooling tab
 		driver.find_element_by_id("substatus-344").click()
 
 		wait_for_inshape_loading(driver)
@@ -94,7 +94,7 @@ while restart:
 
 		wait_for_inshape_loading(driver)
 
-		# navagates to the unpacking and cleaning tab
+		# navagates to the cleaning tab
 		driver.find_element_by_id("substatus-187").click()
 
 		wait_for_inshape_loading(driver)

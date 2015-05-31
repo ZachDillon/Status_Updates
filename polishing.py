@@ -35,3 +35,7 @@ while restart:
 	# into the polisher. 
 	user = raw_input("User ID:")
 	password = getpass.getpass("Password:")
+	color1 = raw_input("Scan the color to be moved:")
+	color2 = raw_input("Confirm the color:")
+	polisherI = raw_input("Scan the destination polisher:")
+	polisherII = raw_input("Confirm the polisher:")

@@ -32,8 +32,8 @@ def wait_for_inshape_loading(driver):
 restart = True
 while restart:
 	# Gathers the users login name, password and Tray name
-	user = raw_input("What is your user name?")
-	password = getpass.getpass("What is your password?")
+	user = raw_input("User ID:")
+	password = getpass.getpass("Password:")
 	tray_name1 = raw_input("Please scan or enter in tray name:")
 	tray_name2 = raw_input("Please enter tray name again to confirm:")
 

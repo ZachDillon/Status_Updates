@@ -24,7 +24,7 @@ def wait_for_inshape_loading(driver):
 	polling.poll(
 		lambda: not is_element_present_and_displayed(driver, 'hoverLoading'),
 		step=1,
-		timeout=20,
+		timeout=90,
 	)
 
 
@@ -66,7 +66,7 @@ while restart:
 		cooling_tab = polling.poll(
 			lambda: driver.find_element_by_id("substatus-344"),
 			step=1,
-			timeout=30,
+			timeout=90,
 			ignore_exceptions=(Exception,)
 		)
 		cooling_tab.click()
@@ -87,7 +87,7 @@ while restart:
 		unpack_tab = polling.poll(
 			lambda: driver.find_element_by_id("substatus-187"),
 			step=1,
-			timeout=30,
+			timeout=90,
 			ignore_exceptions=(Exception,)
 		)
 		unpack_tab.click()

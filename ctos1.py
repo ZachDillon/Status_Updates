@@ -107,7 +107,8 @@ while restart:
 
 		time.sleep(5)
 
-		print "Success, move complete."
+		print tray_final
+		print "Was moved successfully."
 
 		# close firefox
 		driver.close()

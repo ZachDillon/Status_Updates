@@ -24,7 +24,7 @@ def wait_for_inshape_loading(driver):
 	polling.poll(
 		lambda: not is_element_present_and_displayed(driver, 'hoverLoading'),
 		step=1,
-		timeout=20,
+		timeout=90,
 	)
 
 
@@ -39,3 +39,18 @@ while restart:
 	color2 = raw_input("Confirm the color:")
 	polisherI = raw_input("Scan the destination polisher:")
 	polisherII = raw_input("Confirm the polisher:")
+
+	if color1 == color2:
+		color = color1 or color2
+		print "Color collected"
+		if polisherI == polisherII:
+			polisher = polisherI or polisherII
+			print "Polisher collected"
+
+			print color
+			print polisher
+
+		else:
+			print "Error: polishers did not match, please tray again."
+	else:
+		print "Error: colors did not match, please try again."
